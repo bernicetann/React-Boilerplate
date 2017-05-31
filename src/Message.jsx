@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 class Message extends Component {
   render() {
-
+    console.log("Rendering Message <Message/>");
     return (
       <main className="messages">
         <div className="message">
