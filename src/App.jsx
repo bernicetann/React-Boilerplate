@@ -24,20 +24,33 @@ class App extends Component {
   //Store webSocket in this.socket.
   this.socket = webSocket;
 
+  //When receiving message from the server,
   //This will rerender components and the new message should show up
   this.socket.onmessage = (event) => {
     console.log(event);
-    this.setState({
-      messages: this.state.messages.concat(JSON.parse(event.data))
-    });
+    const data = JSON.parse(event.data);
+    this.setState({ messages: this.state.messages.concat(data) });
   }
   }
 
+
   //When you press enter, you send the object with username/content to the server
+  //onNewPost is being called from ChatBar.jsx(where we get our params from)
   onNewPost(content, username) {
-    this.socket.send(JSON.stringify({ username: username || this.state.currentUser.name,
-                                      content: content
-                                    }));
+    if (username !== this.state.currentUser.name) {
+      var clientData = (JSON.stringify({ type: "postNotification",
+                                         content: `${this.state.currentUser.name} changed their name to ${username}`
+                                       }));
+      this.setState({ currentUser: { name: username }});
+      this.socket.send(clientData);
+    }
+    var clientData = (JSON.stringify({ type: "postMessage",
+                                       username: username,
+                                       content: content
+                                     }));
+    console.log("NEWPOST", clientData);
+    this.socket.send(clientData);
+
   }
 
   //Render the DOM
