@@ -4,7 +4,8 @@ import ChatBar from './Chatbar.jsx';
 
 const data = {
   currentUser: {name: "Bob"}, // optional. if currentUser is not defined, it means the user is Anonymous
-  messages: []
+  messages: [],
+  numConnections: 0
 };
 
 class App extends Component {
@@ -28,8 +29,12 @@ class App extends Component {
   //This will rerender components and the new message should show up
   this.socket.onmessage = (event) => {
     console.log(event);
-    const data = JSON.parse(event.data);
-    this.setState({ messages: this.state.messages.concat(data) });
+    const receivedEvent = JSON.parse(event.data);
+    if (receivedEvent.type === 'newConnection') {
+      this.setState({ numConnections: receivedEvent.numClients })
+    } else {
+      this.setState({ messages: this.state.messages.concat(receivedEvent) });
+    }
   }
   }
 
@@ -37,6 +42,7 @@ class App extends Component {
   //When you press enter, you send the object with username/content to the server
   //onNewPost is being called from ChatBar.jsx(where we get our params from)
   onNewPost(content, username) {
+
     if (username !== this.state.currentUser.name) {
       var clientData = (JSON.stringify({ type: "postNotification",
                                          content: `${this.state.currentUser.name} changed their name to ${username}`
@@ -59,6 +65,7 @@ class App extends Component {
       <div>
         <nav className="navbar">
           <a href="/" className="navbar-brand">Chatttttttttty</a>
+          <span className="users-online">{ this.state.numConnections + ' ' } Users Online</span>
         </nav>
         <MessageList messages={ this.state.messages }/>
         <ChatBar user={ this.state.currentUser}

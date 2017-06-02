@@ -1,32 +1,38 @@
 import React, {Component} from 'react';
 
+function isImgUrl(string) {
+  return /^https?:\/\/.+\.(jpg|jpeg|png|gif)$/.test(string);
+}
+
 class Message extends Component {
   render() {
-    console.log("Rendering Message <Message/>");
-
     if ( this.props.type === 'postNotification' ) {
       return(
         <div className="message system">
-          Anonymous1 changed their name to nomnom.
+
         </div>
       )
-    } else {
+    }
+    if ( isImgUrl(this.props.content) ) {
       return (
         <main className="messages">
           <div className="message">
             <span className="message-username">{ this.props.username }</span>
-            <span className="message-content">{ this.props.content }</span>
+            <span className="message-content">
+              <img className="render-image" src={ this.props.content } />
+            </span>
           </div>
         </main>
       );
     }
+    return (
+      <main className="messages">
+        <div className="message">
+          <span className="message-username">{ this.props.username }</span>
+          <span className="message-content">{ this.props.content }</span>
+        </div>
+      </main>
+    );
   }
 }
 export default Message;
-
-
-/*
-        <div className="message system">
-          Anonymous1 changed their name to nomnom.
-        </div>
-*/
