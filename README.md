@@ -3,6 +3,8 @@ React Boilerplate
 
 A minimal and light dev environment for ReactJS.
 
+This small project gave me insight for building user interfaces. I can specify React which components I want to render and React will efficiently update and render the appropriate components when the data changes. In the Chatty App, using React definitely provided real-time interaction with another user who is connected, which makes this feature functional and practical.
+
 ### Usage
 
 Clone the boilerplate and create your own git repo.
@@ -22,6 +24,11 @@ npm install
 npm start
 open http://localhost:3000
 ```
+### Screenshots
+Here are some proofs of my work on this mini project.
+![alt text](Chatt-App-Typed-Hello.png)
+![alt text](Changed-name.png)
+![alt text](Posted-image.png)
 
 ### Static Files
 

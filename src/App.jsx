@@ -17,12 +17,10 @@ class App extends Component {
 
   componentDidMount() {
   console.log("componentDidMount <App />");
-  //connect Websocket to localhost 3001
   var webSocket = new WebSocket("ws://localhost:3001");
   webSocket.onopen = function (event) {
-      console.log("Connected to server");
+    console.log("Connected to server");
   };
-  //Store webSocket in this.socket.
   this.socket = webSocket;
 
   //When receiving message from the server,
@@ -42,7 +40,6 @@ class App extends Component {
   //When you press enter, you send the object with username/content to the server
   //onNewPost is being called from ChatBar.jsx(where we get our params from)
   onNewPost(content, username) {
-
     if (username !== this.state.currentUser.name) {
       var clientData = (JSON.stringify({ type: "postNotification",
                                          content: `${this.state.currentUser.name} changed their name to ${username}`
@@ -56,7 +53,6 @@ class App extends Component {
                                      }));
     console.log("NEWPOST", clientData);
     this.socket.send(clientData);
-
   }
 
   //Render the DOM

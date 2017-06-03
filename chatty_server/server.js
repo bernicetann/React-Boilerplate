@@ -41,7 +41,6 @@ function handleMessage(data) {
       throw new Error("Unknown event type" + parsedData.type);
   }
   broadcast(JSON.stringify(parsedData));
-  console.log(parsedData);
 }
 
 //Parses client # to the client side

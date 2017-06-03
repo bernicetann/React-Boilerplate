@@ -6,6 +6,7 @@ function isImgUrl(string) {
 
 class Message extends Component {
   render() {
+
     if ( this.props.type === 'postNotification' ) {
       return(
         <div className="message system">
