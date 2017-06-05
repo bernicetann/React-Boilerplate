@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import MessageList from './MessageList.jsx';
-import ChatBar from './Chatbar.jsx';
+import ChatBar from './ChatBar.jsx';
 
 const data = {
   currentUser: {name: "Bob"}, // optional. if currentUser is not defined, it means the user is Anonymous
