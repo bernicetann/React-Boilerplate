@@ -26,9 +26,9 @@ open http://localhost:3000
 ```
 ### Screenshots
 Here are some proofs of my work on this mini project.
-![alt text](Chatt-App-Typed-Hello.png)
-![alt text](Changed-name.png)
-![alt text](Posted-image.png)
+![alt text](https://github.com/bernicetann/React-Boilerplate/blob/master/doc/Chatt-App-Typed-Hello.png?raw=true)
+![alt text](Chttps://github.com/bernicetann/React-Boilerplate/blob/master/doc/Changed-name.png?raw=true)
+![alt text](https://github.com/bernicetann/React-Boilerplate/blob/master/doc/Posted-image.png?raw=true)
 
 ### Static Files
 
